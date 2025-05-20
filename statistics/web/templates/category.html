@@ -1,0 +1,124 @@
+
+<!DOCTYPE html5>
+<html>
+    <head>
+        <title>Статистика по категориям</title>
+    </head>
+    <style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    table {
+        width: 100%;
+    }
+    </style>
+    <body>
+        <h2>Самые популярные категории:</h2>
+        {{range .popularityCategoriesStruct}}
+            <p><a href="/category/{{.Struct.Id}}">{{.Struct.Title}}</a> Просмотры: {{.View}}</p>
+        {{end}}
+        <h2>Последние запросы к категориям</h2>
+
+        <h3>Просмотр</h3>
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>Title</td>
+                <td>Photo</td>
+                <td>Action</td>
+                <td>Table</td>
+                <td>CommitTime</td> <br>
+            </tr>
+            {{ range .categoryMessages }}
+            {{if eq .Action "SELECT"}}
+            <tr>
+                <td>{{.Data.Id}}</td>
+                <td>{{.Data.Title}}</td>
+                <td>{{.Data.Photo}}</td>
+                <td>{{.Action}}</td>
+                <td>{{.Table}}</td>
+                <td>{{.CommitTime}}</td> <br>
+            </tr>
+            {{end}}
+            {{end}}
+        </table>
+
+        <h3>Удаление</h3>
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>OldTitle</td>
+                <td>OldPhoto</td>
+                <td>Action</td>
+                <td>Table</td>
+                <td>CommitTime</td> <br>
+            </tr>
+            {{ range .categoryMessages }}
+            {{if eq .Action "DELETE"}}
+            <tr>
+                <td>{{.Data.Id}}</td>
+                <td>{{.DataOld.Title}}</td>
+                <td>{{.DataOld.Photo}}</td>
+                <td>{{.Action}}</td>
+                <td>{{.Table}}</td>
+                <td>{{.CommitTime}}</td> <br>
+            </tr>
+            {{end}}
+            {{end}}
+        </table>
+
+        <h3>Изменение</h3>
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>Title</td>
+                <td>Photo</td>
+                <td>OldTitle</td>
+                <td>OldPhoto</td>
+                <td>Action</td>
+                <td>Table</td>
+                <td>CommitTime</td> <br>
+            </tr>
+            {{ range .categoryMessages }}
+            {{if eq .Action "UPDATE"}}
+            <tr>
+                <td>{{.Data.Id}}</td>
+                <td>{{.Data.Title}}</td>
+                <td>{{.Data.Photo}}</td>
+                <td>{{.DataOld.Title}}</td>
+                <td>{{.DataOld.Photo}}</td>
+                <td>{{.Action}}</td>
+                <td>{{.Table}}</td>
+                <td>{{.CommitTime}}</td> <br>
+            </tr>
+            {{end}}
+            {{end}}
+        </table>        
+        
+        <h3>Вставка</h3>
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>Title</td>
+                <td>Photo</td>
+                <td>Action</td>
+                <td>Table</td>
+                <td>CommitTime</td> <br>
+            </tr>
+            {{ range .categoryMessages }}
+            {{if eq .Action "INSERT"}}
+            <tr>
+                <td>{{.Data.Id}}</td>
+                <td>{{.Data.Title}}</td>
+                <td>{{.Data.Photo}}</td>
+                <td>{{.Action}}</td>
+                <td>{{.Table}}</td>
+                <td>{{.CommitTime}}</td> <br>
+            </tr>
+            {{end}}
+            {{end}}
+        </table>
+
+    </body>
+</html>

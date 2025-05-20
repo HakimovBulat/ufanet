@@ -1,0 +1,186 @@
+
+<!DOCTYPE html5>
+<html>
+    <head>
+        <title>Статистика по скидкам</title>
+    </head>
+    <style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    table {
+        width: 100%;
+    }
+    </style>
+    <body>
+        <h2>Самые популярные скидки:</h2>
+        {{range .popularitySalesStruct}}
+            <p><a href="/sale/{{.Struct.Id}}">{{.Struct.Title}}</a> Просмотры: {{.View}}</p>
+        {{end}}
+        <h2>Последние запросы к скидкам</h2>
+
+        <h3>Просмотр</h3>
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>Title</td>
+                <td>Subtitle</td>
+                <td>Photo</td>
+                <td>AboutPartner</td>
+                <td>Promocode</td>
+                <td>StartDate</td>
+                <td>EndDate</td>
+                <td>Url</td>
+                <td>Action</td>
+                <td>Table</td>
+                <td>CommitTime</td> <br>
+            </tr>
+            {{ range .saleMessages }}
+            {{if eq .Action "SELECT"}}
+            <tr>
+                <td>{{.Data.Id}}</td>
+                <td>{{.Data.Title}}</td>
+                <td>{{.Data.Subtitle}}</td>
+                <td>{{.Data.Photo}}</td>
+                <td>{{.Data.AboutPartner}}</td>
+                <td>{{.Data.Promocode}}</td>
+                <td>{{.Data.StartDate}}</td>
+                <td>{{.Data.EndDate}}</td>
+                <td>{{.Data.Url}}</td>
+                <td>{{.Action}}</td>
+                <td>{{.Table}}</td>
+                <td>{{.CommitTime}}</td> <br>
+            </tr>
+            {{end}}
+            {{end}}
+        </table>
+
+
+        <h3>Удаление</h3>
+        <table>
+            <tr>
+                <td>OldId</td>
+                <td>OldTitle</td>
+                <td>OldSubtitle</td>
+                <td>OldPhoto</td>
+                <td>OldAboutPartner</td>
+                <td>OldPromocode</td>
+                <td>OldStartDate</td>
+                <td>OldEndDate</td>
+                <td>OldUrl</td>
+                <td>Action</td>
+                <td>Table</td>
+                <td>CommitTime</td> <br>
+            </tr>
+            {{ range .saleMessages }}
+            {{if eq .Action "DELETE"}}
+            <tr>
+                <td>{{.DataOld.Id}}</td>
+                <td>{{.DataOld.Title}}</td>
+                <td>{{.DataOld.Subtitle}}</td>
+                <td>{{.DataOld.Photo}}</td>
+                <td>{{.DataOld.AboutPartner}}</td>
+                <td>{{.DataOld.Promocode}}</td>
+                <td>{{.DataOld.StartDate}}</td>
+                <td>{{.DataOld.EndDate}}</td>
+                <td>{{.DataOld.Url}}</td>
+                <td>{{.Action}}</td>
+                <td>{{.Table}}</td>
+                <td>{{.CommitTime}}</td> <br>
+            </tr>
+            {{end}}
+            {{end}}
+        </table>
+        
+        <h3>Изменение</h3>
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>Title</td>
+                <td>Subtitle</td>
+                <td>Photo</td>
+                <td>AboutPartner</td>
+                <td>Promocode</td>
+                <td>StartDate</td>
+                <td>EndDate</td>
+                <td>Url</td>
+                <td>OldId</td>
+                <td>OldTitle</td>
+                <td>OldSubtitle</td>
+                <td>OldPhoto</td>
+                <td>OldAboutPartner</td>
+                <td>OldPromocode</td>
+                <td>OldStartDate</td>
+                <td>OldEndDate</td>
+                <td>OldUrl</td>
+                <td>Action</td>
+                <td>Table</td>
+                <td>CommitTime</td> <br>
+            </tr>
+            {{ range .saleMessages }}
+            {{if eq .Action "UPDATE"}}
+            <tr>
+                <td>{{.Data.Id}}</td>
+                <td>{{.Data.Title}}</td>
+                <td>{{.Data.Subtitle}}</td>
+                <td>{{.Data.Photo}}</td>
+                <td>{{.Data.AboutPartner}}</td>
+                <td>{{.Data.Promocode}}</td>
+                <td>{{.Data.StartDate}}</td>
+                <td>{{.Data.EndDate}}</td>
+                <td>{{.Data.Url}}</td>
+                <td>{{.DataOld.Id}}</td>
+                <td>{{.DataOld.Title}}</td>
+                <td>{{.DataOld.Subtitle}}</td>
+                <td>{{.DataOld.Photo}}</td>
+                <td>{{.DataOld.AboutPartner}}</td>
+                <td>{{.DataOld.Promocode}}</td>
+                <td>{{.DataOld.StartDate}}</td>
+                <td>{{.DataOld.EndDate}}</td>
+                <td>{{.DataOld.Url}}</td>
+                <td>{{.Action}}</td>
+                <td>{{.Table}}</td>
+                <td>{{.CommitTime}}</td> <br>
+            </tr>
+            {{end}}
+            {{end}}
+        </table>
+
+        <h3>Вставка</h3>
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>Title</td>
+                <td>Subtitle</td>
+                <td>Photo</td>
+                <td>AboutPartner</td>
+                <td>Promocode</td>
+                <td>StartDate</td>
+                <td>EndDate</td>
+                <td>Url</td>
+                <td>Action</td>
+                <td>Table</td>
+                <td>CommitTime</td> <br>
+            </tr>
+            {{ range .saleMessages }}
+            {{if eq .Action "INSERT"}}
+            <tr>
+                <td>{{.Data.Id}}</td>
+                <td>{{.Data.Title}}</td>
+                <td>{{.Data.Subtitle}}</td>
+                <td>{{.Data.Photo}}</td>
+                <td>{{.Data.AboutPartner}}</td>
+                <td>{{.Data.Promocode}}</td>
+                <td>{{.Data.StartDate}}</td>
+                <td>{{.Data.EndDate}}</td>
+                <td>{{.Data.Url}}</td>
+                <td>{{.Action}}</td>
+                <td>{{.Table}}</td>
+                <td>{{.CommitTime}}</td> <br>
+            </tr>
+            {{end}}
+            {{end}}
+        </table>
+    </body>
+</html>
